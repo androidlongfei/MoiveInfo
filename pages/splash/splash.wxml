@@ -1,0 +1,16 @@
+<view class="container">
+  <swiper indicator-dots class="splash">
+    <swiper-item wx:for="{{ movies }}" wx:for-index="moveIndex" wx:key="id" wx:for-item="moveItem">
+      <image src="{{ moveItem.images.large }}" class="slide-image" mode="aspectFill"/>
+      <button class="start" bindtap="handleStart" wx:if="{{ moveIndex == movies.length - 1 }}">立即体验</button>
+    </swiper-item>
+  </swiper>
+</view>
+
+<!-- swiper -->
+<!-- indicator-dots 显示小圆点 -->
+
+<!-- wx:for -->
+<!-- 使用 wx:for-item 可以指定数组当前元素的变量名 -->
+<!-- 使用 wx:for-index 可以指定数组当前下标的变量名 -->
+<!-- 使用 wx:key 来指定列表中项目的唯一的标识符 -->
