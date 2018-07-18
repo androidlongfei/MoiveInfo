@@ -1,6 +1,6 @@
 const {
-  getUserInfo
-} = require('../../utils/wechat')
+  findOne
+} = require('../../utils/douban')
 
 Page({
 
@@ -8,40 +8,48 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    title: '',
+    movie: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('profile onload =>')
-    this.getUser()
-  },
-
-  getUser() {
+    console.log('item onLoad =>', options)
     wx.showLoading({
       title: '加载中...'
     })
-    getUserInfo().then(res => {
-      console.log('getUserInfo', res)
-      this.setData({
-        userInfo: res.userInfo,
-        hasUserInfo: true
+    // console.log('douban', findOne)
+    findOne(options.id)
+      .then(res => {
+        console.log('findOne', res)
+        if (res && res.title) {
+          this.setData({
+            title: res.title,
+            movie: res
+          })
+          wx.setNavigationBarTitle({
+            title: res.title
+          })
+        }
+        wx.hideLoading()
       })
-      wx.hideLoading()
-    })
+      .catch(e => {
+        this.setData({
+          title: '获取数据异常',
+          movie: {}
+        })
+        console.error(e)
+        wx.hideLoading()
+      })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    wx.setNavigationBarTitle({
-      title: '我的'
-    })
+
   },
 
   /**

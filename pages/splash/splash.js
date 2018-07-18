@@ -11,11 +11,11 @@ Page({
     loading: true
   },
 
-  getCache(){
-    return new Promise((resolve,reject)=>{
-      app.wechat.getStorage('last_splash_data').then(res=>{
+  getCache() {
+    return new Promise((resolve, reject) => {
+      app.wechat.getStorage('last_splash_data').then(res => {
         // console.log('getCache',res.data)
-        if (res.data.movies && res.data.expires > Date.now()){
+        if (res.data.movies && res.data.expires > Date.now()) {
           // console.log('res.data', res.data)
           return resolve(res.data)
         }
@@ -29,12 +29,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log('splash.js => onLoad', app);
     console.log('splash.js => onLoad this', this);
-    this.getCache().then(res=>{
-      if(res){
-        console.log('onLoad getCache =>',res)
+    this.getCache().then(res => {
+      if (res) {
+        console.log('onLoad getCache =>', res)
         this.setData({
           movies: res.movies,
           loading: false
@@ -53,7 +53,7 @@ Page({
           // 过期时间为一天
           expires: Date.now() + 1 * 24 * 60 * 60 * 1000
         })
-      }).then(()=>{
+      }).then(() => {
         console.log('cache data success')
       }).catch(err => {
         console.log('coming_soon', err)
@@ -61,59 +61,59 @@ Page({
     })
   },
 
-  handleStart(){
+  handleStart() {
     console.log('handleStart=>')
     wx.switchTab({
-      url: '../index/index'
+      url: '../board/board'
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function() {
+
   }
 })

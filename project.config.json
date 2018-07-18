@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
 	"appid": "wx195051f5b6a00169",
-	"projectname": "TestOne",
+	"projectname": "MovieInfo",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -33,12 +33,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "board",
-					"pathName": "pages/board/board"
+					"pathName": "pages/board/board",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "item",
+					"pathName": "pages/item/item",
+					"query": "id=26366496"
 				}
 			]
 		}

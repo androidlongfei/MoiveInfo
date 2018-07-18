@@ -25,6 +25,9 @@ Page({
    */
   onLoad: function(options) {
     console.log('board onload =>')
+    wx.setNavigationBarTitle({
+      title: '榜单'
+    })
     wx.showLoading({
       title: '加载中...',
     })
@@ -43,6 +46,15 @@ Page({
         loading: false
       })
       wx.hideLoading()
+    })
+  },
+
+  handlerItemClick(event) {
+    console.log('handlerItemClick', event)
+    let movieItem = event.currentTarget.dataset.movieItem
+    console.log('handlerItemClick =>', movieItem)
+    wx.navigateTo({
+      url: `../item/item?id=${movieItem.id}`
     })
   },
 
